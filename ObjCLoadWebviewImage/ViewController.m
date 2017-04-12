@@ -13,7 +13,7 @@
 #import <WebKit/WebKit.h>
 @interface ViewController ()<WKNavigationDelegate>
 
-@property (nonatomic, strong) WKWebView *webView;
+@property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) NSMutableArray *imageViews;
 
 @end
@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  self.webView = [[WKWebView alloc] initWithFrame:self.view.bounds];
+  self.webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
 //  self.webView.scalesPageToFit = YES;
   [self.view addSubview:self.webView];
   
@@ -77,7 +77,7 @@ BOOL bo = [[NSFileManager defaultManager] createDirectoryAtPath:docPath withInte
     //把图片进行base64
     NSString * jpg = [self htmlForJPGImage:_image];
     //然后在替换scr 
-    html = [html stringByReplacingOccurrencesOfString:src withString:jpg];
+    html = [html stringByReplacingOccurrencesOfString:src withString:localPath];
     
     // 如果已经缓存过，就不需要重复加载了。
     if (![[NSFileManager defaultManager] fileExistsAtPath:localPath]) {
